@@ -44,7 +44,7 @@
 - name: "Install kubectl"
   when: kubectl_ready.rc != 0
   get_url:
-    url: "https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release/{{ kubernetes.version }}/bin/linux/amd64/kubectl"
+    url: "{{ kubernetes.download_url }}/{{ kubernetes.version }}/bin/linux/amd64/kubectl"
     owner: kube
     group: kube
     mode: 0755
@@ -59,7 +59,7 @@
 - name: "Install kube-apiserver"
   when: kube_apiserver_ready.rc != 0
   get_url:
-    url: "https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release/{{ kubernetes.version  }}/bin/linux/amd64/kube-apiserver"
+    url: "{{ kubernetes.download_url }}/{{ kubernetes.version  }}/bin/linux/amd64/kube-apiserver"
     owner: kube
     group: kube
     mode: 0750
@@ -74,7 +74,7 @@
 - name: "Install kube_controller_manager"
   when: kube_controller_manager_ready.rc != 0
   get_url:
-    url: "https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release/{{ kubernetes.version  }}/bin/linux/amd64/kube-controller-manager"
+    url: "{{ kubernetes.download_url }}/{{ kubernetes.version  }}/bin/linux/amd64/kube-controller-manager"
     owner: kube
     group: kube
     mode: 0750
@@ -89,7 +89,7 @@
 - name: "Install kube-scheduler"
   when: kube_scheduler_ready.rc != 0
   get_url:
-    url: "https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release/{{ kubernetes.version  }}/bin/linux/amd64/kube-scheduler"
+    url: "{{ kubernetes.download_url }}/{{ kubernetes.version  }}/bin/linux/amd64/kube-scheduler"
     owner: kube
     group: kube
     mode: 0750

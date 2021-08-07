@@ -36,6 +36,9 @@ evictionHard:
   nodefs.inodesFree: "5%"
   imagefs.available: "15%"
 evictionPressureTransitionPeriod: 0s
+featureGates:
+  RotateKubeletServerCertificate: true
+  RotateKubeletClientCertificate: true
 fileCheckFrequency: 0s
 healthzBindAddress: 0.0.0.0
 healthzPort: 10248
@@ -50,7 +53,6 @@ runtimeRequestTimeout: 15m
 readOnlyPort: 0
 podCIDR: "{{ kubernetes.podSubnet }}"
 port: 10250
-serverTLSBootstrap: true
 staticPodPath: /etc/kubernetes/manifests
 streamingConnectionIdleTimeout: 0s
 syncFrequency: 0s
