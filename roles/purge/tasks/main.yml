@@ -2,7 +2,7 @@
 - name: "停止集群的所有服务"
   systemd:
     name: "{{ item }}"
-    state: stop
+    state: stopped
     daemon_reload: yes
   with_items:
     - "keepalived"
@@ -38,6 +38,8 @@
     - "crictl"
     - "kubelet"
     - "kube-proxy"
+    - "helm"
+    - "calicoctl"
   tags: purge
 
 - name: "删除集群目录及文件"
@@ -57,6 +59,7 @@
     - "/var/log/kubernetes"
     - "/var/log/calico"
     - "/opt/cni/bin"
+    - "/root/.kube"
     - "/etc/cni/net.d"
     - "/var/log/chrony"
     - "/etc/crictl.yaml"
@@ -68,3 +71,4 @@
     - "/usr/lib/systemd/system/kube-scheduler.service"
     - "/usr/lib/systemd/system/kubelet.service"
     - "/usr/lib/systemd/system/kube-proxy.service"
+  tags: purge

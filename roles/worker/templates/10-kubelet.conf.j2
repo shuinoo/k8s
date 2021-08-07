@@ -4,14 +4,16 @@ KUBELET_ARGS="\
     --kubeconfig=/etc/kubernetes/kubelet.kubeconfig  \
     --config=/etc/kubernetes/kubelet.conf \
 {% if container_runtime == "containerd" %}
-    --runtime-cgroups=/system.slice/containerd.service \
     --container-runtime=remote \
     --container-runtime-endpoint=unix:///var/run/containerd.sock \
     --image-service-endpoint=unix:///var/run/containerd.sock \
+    --runtime-cgroups=/system.slice/containerd.service \
 {% else %}
     --container-runtime=docker \
+    --runtime-cgroups=/system.slice/docker.service \
 {% endif %}
     --cert-dir=/etc/kubernetes/pki \
     --root-dir={{ kubernetes.kubelet_dir | default("/var/lib/kubelet") }} \
+    --pod-infra-container-image={{ kubernetes.infraimage }} \
     --network-plugin=cni \
     --v=2"

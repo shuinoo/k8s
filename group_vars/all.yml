@@ -41,6 +41,8 @@ kubernetes:
   cni_plugins_version: v0.8.7
   # 集群管理员
   admin: wx-k8s-admin
+  # pause镜像地址
+  pod_infraimage: registry.cn-hangzhou.aliyuncs.com/qcloud-gcr/pause-amd64:3.2
   
 
 # Container-runtime

@@ -1,6 +1,8 @@
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
 address: 0.0.0.0
+allowedUnsafeSysctls:
+  - "net.core.somaxconn"
 cgroupDriver: systemd
 authentication:
   anonymous:
@@ -25,16 +27,30 @@ clusterDNS:
 cpuManagerReconcilePeriod: 0s
 containerLogMaxSize: 200Mi
 containerLogMaxFiles: 10
+enforceNodeAllocatable: ["pods"]
+eventBurst: 20
+eventRecordQPS: 5
+evictionHard:
+  memory.available: "100Mi"
+  nodefs.available: "10%"
+  nodefs.inodesFree: "5%"
+  imagefs.available: "15%"
 evictionPressureTransitionPeriod: 0s
 fileCheckFrequency: 0s
 healthzBindAddress: 0.0.0.0
 healthzPort: 10248
 httpCheckFrequency: 0s
 imageMinimumGCAge: 0s
+maxPods: 220
 nodeStatusReportFrequency: 0s
 nodeStatusUpdateFrequency: 0s
+resolvConf: /etc/resolv.conf
 rotateCertificates: true
 runtimeRequestTimeout: 15m
+readOnlyPort: 0
+podCIDR: "{{ kubernetes.podSubnet }}"
+port: 10250
+serverTLSBootstrap: true
 staticPodPath: /etc/kubernetes/manifests
 streamingConnectionIdleTimeout: 0s
 syncFrequency: 0s
