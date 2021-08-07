@@ -102,7 +102,7 @@
     mode: 0644
   tags: docker_config
   notify:
-    - restart_docker
+    - restarted docker
 
 - name: "wait for docker started"
   command: "docker images ls -q"

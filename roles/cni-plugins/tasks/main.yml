@@ -11,7 +11,13 @@
     - "/etc/cni/net.d/"
   tags: dir
 
+- name: "判断cni-plugins是否已经存在"
+  shell: ls /tmp/cni-plugins-linux-amd64-{{kubernetes.cni_plugins_version}}.tgz
+  ignore_errors: true
+  register: cni_plugins_exist_ready
+
 - name: Get cni-plugins
+  when: cni_plugins_exist_ready.rc != 0
   get_url:
     url: "https://github.91chifun.workers.dev/https://github.com//containernetworking/plugins/releases/download/{{kubernetes.cni_plugins_version}}/cni-plugins-linux-amd64-{{kubernetes.cni_plugins_version}}.tgz"
     dest: /tmp/

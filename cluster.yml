@@ -1,9 +1,9 @@
 ---
-- name: "删除集群"
-  hosts: haproxy etcd master worker
-  roles:
-    - role: purge
-      tags: purge
+#- name: "删除集群"
+#  hosts: haproxy etcd master worker
+#  roles:
+#    - role: purge
+#      tags: purge
 
 - name: "Verify Settings"
   hosts: haproxy etcd master worker

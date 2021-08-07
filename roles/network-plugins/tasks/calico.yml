@@ -13,6 +13,17 @@
   run_once: true
   tags: calico
 
-- name: "复制calicoctl /usr/bin"
-  copy:
+- name: "检查calicoctl是否存在"
+  shell: ls /usr/bin/calicoctl
+  ignore_errors: true
+  register: calicoctl_ready
 
+- name: "复制calicoctl至/usr/bin"
+  get_url:
+    url: "https://github.com/projectcalico/calicoctl/releases/download/{{ calico.version }}/calicoctl-linux-amd64"
+    owner: root
+    group: root
+    mode: 0750
+    dest: /usr/bin/calicoctl
+  when: calicoctl_ready.rc != 0
+  tags: calico

@@ -14,6 +14,6 @@ KUBELET_ARGS="\
 {% endif %}
     --cert-dir=/etc/kubernetes/pki \
     --root-dir={{ kubernetes.kubelet_dir | default("/var/lib/kubelet") }} \
-    --pod-infra-container-image={{ kubernetes.infraimage }} \
+    --pod-infra-container-image={{ kubernetes.pod_infraimage }} \
     --network-plugin=cni \
     --v=2"

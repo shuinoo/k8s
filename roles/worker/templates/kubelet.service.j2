@@ -7,7 +7,7 @@ Requires={{ container_runtime  }}.service
 [Service]
 User=root
 WorkingDirectory={{ kubernetes.kubelet_dir | default("/var/lib/kubelet") }}
-EnvironmentFile=-/etc/sysconfig/kubelet
+EnvironmentFile=-/etc/kubernetes/kubelet
 ExecStart=/usr/bin/kubelet $KUBELET_ARGS
 Restart=on-failure
 
