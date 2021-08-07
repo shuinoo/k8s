@@ -1,17 +1,10 @@
-使用Ansible Playbook进行生产级别高可用kubernetes集群部署，包含初始化系统配置、自动签发集群证书、安装配置etcd集群、安装配置haproxy及keepalived、calico、coredns、metrics-server等，并使用bootstrap方式认证以及kubernetes组件健康检查。另外支持集群节点扩容、替换集群证书、kubernetes版本升级等。本Playbook使用二进制方式部署。
-
-配合kubernetes剔除dockershim，本Playbook将运行时修改为containerd。
-
-
-
 ## 一、配置Playbook
 
 ### 1.1、拉取Playbook代码
 
 ```
-git clone https://github.com/k8sre/k8s.git
+git clone https://github.com/shuinoo/k8s.git
 ```
-
 
 
 ### 1.2、配置inventory
@@ -48,10 +41,11 @@ git clone https://github.com/k8sre/k8s.git
 CentOS7等系统需安装以下依赖才能安装ansible
 
 ```
-yum -y install python36-PyYAML python36-asn1crypto python36-cffi python36-cryptography python36-idna python36-jinja2 python36-jmespath python36-markupsafe python36-paramiko python36-ply python36-pyasn1 python36-pycparser python36-six sshpass
+yum -y install python36-PyYAML python36-asn1crypto python36-cffi python36-cryptography python36-idna python36-jinja2 python36-jmespath python36-markupsafe python36-paramiko python36-ply python36-pyasn1 python36-pycparser python36-six sshpass libselinux-python3
 ```
 
 - 需要配置epel源
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 
 在单独的Ansible控制机执行以下命令安装Ansible
 
