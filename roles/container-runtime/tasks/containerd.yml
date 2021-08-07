@@ -36,4 +36,11 @@
     mode: 0644
   tags: containerd_config
   notify:
-    - restart containerd
+    - restart_containerd
+
+- name: "wait for containerd started"
+  command: "ctr images ls -q"
+  register: containerd_ready
+  retries: 8
+  delay: 4
+  until: containerd_ready.rc == 0

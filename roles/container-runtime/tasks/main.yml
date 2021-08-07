@@ -1,0 +1,10 @@
+---
+- import_tasks: docker.yml
+  when: container_runtime == "docker"
+  tags:
+    - docker
+
+- import_tasks: containerd.yml
+  when: container_runtime == 'containerd'
+  tags:
+    - containerd

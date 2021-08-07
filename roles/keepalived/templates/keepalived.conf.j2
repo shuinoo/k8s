@@ -22,15 +22,15 @@ vrrp_instance VI_1 {
         auth_type PASS
         auth_pass kuburnetes
     }
-    unicast_peer {
-    {% for host in groups['haproxy'] %}
-      {{ host }}
-    {% endfor %}
 
+    unicast_peer {
+        {{ unicast_peer }}
     }
+
     virtual_ipaddress {
-        {{loadbalance.ip}}
+        {{ loadbalance.ip }}/{{ loadbalance.netmask }}
     }
+
     track_script {
         Checkhaproxy
     }

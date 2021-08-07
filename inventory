@@ -1,21 +1,22 @@
 #本组内填写etcd服务器及主机名
 [etcd]
-172.16.90.101 hostname=sh-etcd-01
-172.16.90.102 hostname=sh-etcd-02
-172.16.90.103 hostname=sh-etcd-03
+192.168.199.21 hostname=etcd-01
+192.168.199.22 hostname=etcd-02
+192.168.199.23 hostname=etcd-03
 
 #本组内填写master服务器及主机名
 [master]
-172.16.90.110 hostname=sh-master-01
-172.16.90.111 hostname=sh-master-02
-172.16.90.112 hostname=sh-master-03
+192.168.199.21 hostname=master-01
+192.168.199.22 hostname=master-02
+192.168.199.23 hostname=master-03
 
 [haproxy]
-172.16.90.198 hostname=sh-haproxy-01 type=MASTER priority=100
-172.16.90.199 hostname=sh-haproxy-02 type=BACKUP priority=90
+192.168.199.21 hostname=haproxy-01 type=MASTER priority=100 unicast_peer=192.168.199.22
+192.168.199.22 hostname=haproxy-02 type=BACKUP priority=90 unicast_peer=192.168.199.21
 
-#本组内填写worker服务器及主机名
+#本组内填写node服务器及主机名
 [worker]
-172.16.90.120 hostname=sh-worker-01
-172.16.90.121 hostname=sh-worker-02
-172.16.90.122 hostname=sh-worker-03
+192.168.199.21 hostname=node-01
+192.168.199.22 hostname=node-02
+192.168.199.23 hostname=node-03
+
